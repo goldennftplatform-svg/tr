@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PLayTR · Trenches Status</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark">PLayTR</span>
+      <span class="brand-sub">STATUS METER</span>
+    </div>
+    <div class="top-meta">
+      <span id="overall-pill" class="pill unknown">CHECKING</span>
+      <span id="checked-at" class="mono muted">—</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">playtrenches.com · live probe</p>
+      <h1 id="overall-title">Checking systems</h1>
+      <p id="overall-copy" class="lede">Probing frontend, backend, Photon, and chain endpoints.</p>
+    </section>
+
+    <section class="meters" aria-label="Frontend and backend status">
+      <article class="meter" data-meter="frontend">
+        <header>
+          <h2>Frontend</h2>
+          <span class="meter-state unknown" data-state>…</span>
+        </header>
+        <div class="gauge" aria-hidden="true">
+          <div class="gauge-track"><div class="gauge-fill" data-fill></div></div>
+        </div>
+        <p class="host mono" data-host>Vercel · www.playtrenches.com</p>
+        <p class="latency mono" data-latency>—</p>
+      </article>
+
+      <article class="meter" data-meter="backend">
+        <header>
+          <h2>Backend</h2>
+          <span class="meter-state unknown" data-state>…</span>
+        </header>
+        <div class="gauge" aria-hidden="true">
+          <div class="gauge-track"><div class="gauge-fill" data-fill></div></div>
+        </div>
+        <p class="host mono" data-host>Vercel · trenches-api.vercel.app</p>
+        <p class="latency mono" data-latency>—</p>
+        <p class="env mono" data-env></p>
+      </article>
+    </section>
+
+    <section class="secondary" aria-label="Supporting systems">
+      <article class="strip" data-meter="multiplayer">
+        <h3>Multiplayer</h3>
+        <span class="meter-state unknown" data-state>…</span>
+        <p class="host mono" data-host>Photon Realtime</p>
+      </article>
+      <article class="strip" data-meter="chain">
+        <h3>Solana</h3>
+        <span class="meter-state unknown" data-state>…</span>
+        <p class="host mono" data-host>mainnet RPC</p>
+      </article>
+      <article class="strip" data-meter="auth">
+        <h3>Auth</h3>
+        <span class="meter-state unknown" data-state>…</span>
+        <p class="host mono" data-host>Privy</p>
+      </article>
+    </section>
+
+    <section class="hosting">
+      <h2>Hosting map</h2>
+      <dl id="hosting-map" class="hosting-map mono"></dl>
+    </section>
+
+    <section class="checks">
+      <div class="checks-head">
+        <h2>Endpoint probes</h2>
+        <button type="button" id="refresh" class="refresh">Refresh now</button>
+      </div>
+      <div id="check-list" class="check-list" role="list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="mono muted">Auto-refresh every 30s · probes run server-side to bypass CORS</p>
+  </footer>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
