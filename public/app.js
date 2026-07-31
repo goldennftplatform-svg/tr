@@ -78,11 +78,14 @@ function renderMeter(name, meter, checks) {
   }
 }
 
-function renderHosting(hosting) {
+function renderHosting(hosting, discovery) {
   const dl = document.getElementById("hosting-map");
   if (!dl || !hosting) return;
   dl.innerHTML = "";
-  for (const [key, value] of Object.entries(hosting)) {
+  const rows = { ...hosting };
+  if (discovery?.unityBuild) rows.unityBuild = discovery.unityBuild;
+  if (discovery?.addressablesCatalog) rows.addressables = discovery.addressablesCatalog;
+  for (const [key, value] of Object.entries(rows)) {
     const row = document.createElement("div");
     const dt = document.createElement("dt");
     const dd = document.createElement("dd");
@@ -158,7 +161,7 @@ async function loadStatus() {
     renderMeter("multiplayer", data.meters.multiplayer, data.checks);
     renderMeter("chain", data.meters.chain, data.checks);
     renderMeter("auth", data.meters.auth, data.checks);
-    renderHosting(data.hosting);
+    renderHosting(data.hosting, data.discovery);
     renderChecks(data.checks);
   } catch (err) {
     const pill = document.getElementById("overall-pill");
